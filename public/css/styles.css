@@ -1,3 +1,22 @@
+:root {
+  --brand-primary: #284e80;
+  --brand-background-primary: #ffffff;
+  --brand-background-primary: #fafafa;
+
+  --foreground-primary: #707070;
+  --foreground-secondary: #141414;
+  --foreground-inverted: #ffffff;
+  --foreground-positive: #058a22;
+  --foreground-alert: #bf2012;
+  --ornament-border: #d5d5d5;
+}
+/* $media-xs: 320px;
+$media-m: 480px;
+$media-tp: 750px;
+$media-t: 880px;
+$media-l: 1024px;
+$media-xl: 1600px; */
+
 body {
   background: white;
   color: black;
@@ -7,4 +26,60 @@ body {
   font-family: Volvo Novum, Arial, sans-serif;
   display: block;
   margin: 0 auto;
+  max-width: 1280px;
+}
+
+.navigationButtons {
+  display: flex;
+  flex: row;
+  align-items: center;
+  justify-content: right;
+}
+.navigation {
+  background: none;
+  border: none;
+}
+
+.rotate-180 {
+  transform: rotateY(180deg);
+}
+
+.productPanel {
+  display: flex;
+  transition: all 1s ease-in-out;
+  position: relative;
+}
+
+.productPanel > .subHeading {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+}
+
+.productPanel > .subHeading > .bodyType {
+  display: flex;
+
+  color: var(--foreground-primary) !important;
+}
+.productPanel > .subHeading > .modelName {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  color: var(--foreground-secondary);
+  font-style: bold;
+}
+
+.productPanel > .subHeading > .modelType {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+
+  color: var(--foreground-primary);
+}
+
+.productPanel_image {
+  max-width: 260px;
+  height: auto;
+  display: flex;
+  justify-content: center;
 }

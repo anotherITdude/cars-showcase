@@ -4,7 +4,6 @@ export const carsReducer = (
   state: StateInterface | any,
   action: ActionInterface | any
 ) => {
-  //export const carsReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {

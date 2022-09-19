@@ -8,7 +8,7 @@ export interface CarsInterface {
 
 export interface StateInterface {
   carList: CarsInterface[];
-  byModelType: string;¯
+  byModelType: string;
 }
 
 export interface ActionInterface {
