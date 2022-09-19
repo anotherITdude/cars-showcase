@@ -1,17 +1,11 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
-import { StateInterface } from "../models/cars";
+import { createContext, useContext, useReducer } from "react";
+import { CarsInterface, StateInterface } from "../models/cars";
 import { carsReducer } from "./Reducer";
 
 const Cars = createContext<StateInterface | null>(null);
 
 const Context = ({ children }: any) => {
-  const carList = [
+  const carList: CarsInterface[] = [
     {
       id: "xc90-recharge",
       modelName: "XC90 Recharge",
