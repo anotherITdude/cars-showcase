@@ -7,10 +7,10 @@ export const carsReducer = (
   const { type, payload } = action;
 
   switch (type) {
-    case "SORT_BY_modelType":
+    case "SORT_BY_BodyType":
       return {
         ...state,
-        modelType: payload,
+        bodyType: payload,
       };
     default:
       state;

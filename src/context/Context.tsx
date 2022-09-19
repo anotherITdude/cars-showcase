@@ -1,5 +1,11 @@
-import { createContext, useContext, useReducer } from "react";
-import { CarsInterface, StateInterface } from "../models/cars";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
+import { StateInterface } from "../models/cars";
 import { carsReducer } from "./Reducer";
 
 const Cars = createContext<StateInterface | null>(null);
@@ -66,9 +72,9 @@ const Context = ({ children }: any) => {
 
   const [state, dispatch] = useReducer(carsReducer, {
     carList,
-    byBodyType: "",
+    bodyType: "",
   });
-  console.log(state);
+
   return <Cars.Provider value={{ state, dispatch }}>{children}</Cars.Provider>;
 };
 

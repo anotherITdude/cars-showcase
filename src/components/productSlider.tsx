@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductItem from "./productItem";
 import { CarState } from "../../src/context/Context";
 import { CarsInterface } from "../models/cars";
 import { useSpringCarousel } from "react-spring-carousel-js";
-import { Flex, SelectInput } from "vcc-ui";
+import { Flex } from "vcc-ui";
 
 const ProductSlider: React.FC = () => {
   const {
-    state: { carList },
+    state: { carList, bodyType },
+    dispatch,
   } = CarState();
+
+  const productList = () => {
+    let sortedProducts = carList;
+    if (bodyType) {
+      sortedProducts = sortedProducts.filter(
+        (item: CarsInterface) => item.bodyType === bodyType
+      );
+    }
+    return sortedProducts;
+  };
+
   const {
     carouselFragment,
     thumbsFragment,
-    useListenToCustomEvent,
     slideToPrevItem,
     slideToNextItem,
     slideToItem,
@@ -20,7 +31,7 @@ const ProductSlider: React.FC = () => {
     itemsPerSlide: 4,
     withLoop: false,
     withThumbs: true,
-    items: carList.map((car: CarsInterface) => ({
+    items: productList().map((car: CarsInterface) => ({
       id: car.id,
       renderItem: (
         <Flex extend={{ padding: 10 }}>
@@ -38,43 +49,58 @@ const ProductSlider: React.FC = () => {
     })),
   });
 
-  const handleFilter = (e: any) => {
-    console.log(e.target.value);
-  };
-  const [value, setValue] = React.useState("");
-
   return (
-    <Flex>
+    <Flex className="clikable">
+      Filter Cars
+      <a
+        onClick={() => {
+          slideToItem(0);
+          dispatch({
+            type: "SORT_BY_BodyType",
+            payload: "",
+          });
+        }}
+      >
+        All
+      </a>
+      <a
+        onClick={() => {
+          slideToItem(0);
+          dispatch({
+            type: "SORT_BY_BodyType",
+            payload: "suv",
+          });
+        }}
+      >
+        SUV
+      </a>
+      <a
+        onClick={() => {
+          slideToItem(0);
+          dispatch({
+            type: "SORT_BY_BodyType",
+            payload: "estate",
+          });
+        }}
+      >
+        ESTATE
+      </a>
+      <a
+        onClick={() => {
+          slideToItem(0);
+          dispatch({
+            type: "SORT_BY_BodyType",
+            payload: "sedan",
+          });
+        }}
+      >
+        SEDAN
+      </a>
       <Flex
         extend={{
           padding: 20,
         }}
-      >
-        <SelectInput
-          label={"Label"}
-          value={value}
-          onChange={(e) => handleFilter(e.target.value)}
-        >
-          <option value="bilmodell">Bilmodell</option>
-          <option value="c30" disabled>
-            Volvo C30
-          </option>
-          <option value="c70">Volvo C70</option>
-          <option value="c90">Volvo C90</option>
-          <option value="c40">Volvo S40</option>
-          <option value="s60">Volvo S60</option>
-          <option value="s80">Volvo S80</option>
-          <option value="s90">Volvo S90</option>
-        </SelectInput>
-        <select>
-          <option selected onChange={(e) => handleFilter}>
-            Select Filter
-          </option>
-          <option value="suv">SUV</option>
-          <option value="estate">ESTATE</option>
-          <option value="sedan">SEDAN</option>
-        </select>
-      </Flex>
+      ></Flex>
       {carouselFragment}
       <div className="navigationButtons">
         <button
@@ -101,12 +127,8 @@ const ProductSlider: React.FC = () => {
       </div>
       <div>{thumbsFragment}</div>
       <ul className="d-none mobileThumbs">
-        {carList.map((car: CarsInterface) => (
-          <li
-            key={car.id}
-            onClick={() => slideToItem(car.id)}
-            className=""
-          ></li>
+        {productList().map((car: CarsInterface, index: number) => (
+          <li key={car.id} onClick={() => slideToItem(index)} className=""></li>
         ))}
       </ul>
     </Flex>

@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { Block, Flex, Text, useTheme } from "vcc-ui";
+import { Block, Flex } from "vcc-ui";
 import { CarsInterface } from "../models/cars";
 
 const ProductItem = ({
@@ -9,7 +9,6 @@ const ProductItem = ({
   modelType,
   imageUrl,
 }: CarsInterface): ReactElement => {
-  const theme = useTheme();
   return (
     <Flex>
       <Block className="productPanel">

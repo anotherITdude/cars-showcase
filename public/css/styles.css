@@ -23,25 +23,12 @@ body {
   max-width: 1280px;
 }
 
-.navigationButtons {
-  display: flex;
-  flex: row;
-  align-items: center;
-  justify-content: right;
-}
-.navigation {
-  background: none;
-  border: none;
-}
-
-.rotate-180 {
-  transform: rotateY(180deg);
-}
-
 .productPanel {
   display: flex;
+  justify-items: center;
+  justify-content: center;
   transition: all 1s ease-in-out;
-  position: relative;
+
   margin-top: 20%;
 }
 
@@ -112,6 +99,21 @@ body {
   justify-content: left;
 }
 
+.navigationButtons {
+  display: flex;
+  flex: row;
+  align-items: center;
+  justify-content: right;
+}
+.navigation {
+  background: none;
+  border: none;
+}
+
+.rotate-180 {
+  transform: rotateY(180deg);
+}
+
 .mobileThumbs {
   display: none;
 }
@@ -122,6 +124,10 @@ body {
   margin: auto;
   float: left;
   padding: 15px 20px;
+}
+
+.clikable a {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
