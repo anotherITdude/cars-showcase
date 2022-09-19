@@ -1,16 +1,15 @@
 import { Block } from "vcc-ui";
-import { useTheme, View } from "vcc-ui";
+import { View } from "vcc-ui";
+import ProductSlider from "../src/components/productSlider";
+import { CarState } from "../src/context/Context";
 
 const Home = () => {
-  const theme = useTheme();
+  const {
+    state: { carList },
+  } = CarState();
   return (
-    <View
-      extend={{
-        background: theme.color.background.primary,
-        color: theme.color.foreground.alert,
-      }}
-    >
-      Hello themed component
+    <View className="container">
+      <ProductSlider />
     </View>
   );
 };

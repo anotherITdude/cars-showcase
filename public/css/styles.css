@@ -2,3 +2,9 @@ body {
   background: white;
   color: black;
 }
+
+.container {
+  font-family: Volvo Novum, Arial, sans-serif;
+  display: block;
+  margin: 0 auto;
+}
