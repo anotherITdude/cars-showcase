@@ -66,8 +66,9 @@ const Context = ({ children }: any) => {
 
   const [state, dispatch] = useReducer(carsReducer, {
     carList,
-    byModelType: "",
+    byBodyType: "",
   });
+  console.log(state);
   return <Cars.Provider value={{ state, dispatch }}>{children}</Cars.Provider>;
 };
 

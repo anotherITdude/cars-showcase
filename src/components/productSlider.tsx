@@ -3,7 +3,7 @@ import ProductItem from "./productItem";
 import { CarState } from "../../src/context/Context";
 import { CarsInterface } from "../models/cars";
 import { useSpringCarousel } from "react-spring-carousel-js";
-import { Flex } from "vcc-ui";
+import { Flex, SelectInput } from "vcc-ui";
 
 const ProductSlider: React.FC = () => {
   const {
@@ -37,35 +37,43 @@ const ProductSlider: React.FC = () => {
       renderThumb: <div color="black"></div>,
     })),
   });
-  useListenToCustomEvent((event) => {
-    //console.log(event.eventName);
 
-    // Triggered during drag gestures
-    // if (event.eventName === "onDrag") {
-    //   console.log("drag");
-    // }
-    // Triggered when the slide is about to slide
-    if (event.eventName === "onSlideStartChange") {
-      console.log("onSlideStartChange");
-    }
-    // Triggered when the slide animation is completed
-    // if (event.eventName === "onSlideChange") {
-    //   console.log("onSlideChange");
-    // }
-    // Triggered on fullscreen change
-    // else if (event.eventName === "onFullscreenChange") {
-    //     console.log("onFullscreenChange");
-    // }
-  });
+  const handleFilter = (e: any) => {
+    console.log(e.target.value);
+  };
+  const [value, setValue] = React.useState("");
+
   return (
     <Flex>
       <Flex
         extend={{
-          border: "1px solid grey",
           padding: 20,
         }}
       >
-        Hello
+        <SelectInput
+          label={"Label"}
+          value={value}
+          onChange={(e) => handleFilter(e.target.value)}
+        >
+          <option value="bilmodell">Bilmodell</option>
+          <option value="c30" disabled>
+            Volvo C30
+          </option>
+          <option value="c70">Volvo C70</option>
+          <option value="c90">Volvo C90</option>
+          <option value="c40">Volvo S40</option>
+          <option value="s60">Volvo S60</option>
+          <option value="s80">Volvo S80</option>
+          <option value="s90">Volvo S90</option>
+        </SelectInput>
+        <select>
+          <option selected onChange={(e) => handleFilter}>
+            Select Filter
+          </option>
+          <option value="suv">SUV</option>
+          <option value="estate">ESTATE</option>
+          <option value="sedan">SEDAN</option>
+        </select>
       </Flex>
       {carouselFragment}
       <div className="navigationButtons">
@@ -92,11 +100,13 @@ const ProductSlider: React.FC = () => {
         </button>
       </div>
       <div>{thumbsFragment}</div>
-      <ul>
+      <ul className="d-none mobileThumbs">
         {carList.map((car: CarsInterface) => (
-          <li key={car.id} onClick={() => slideToItem(car.id)} className="">
-            {car.id}
-          </li>
+          <li
+            key={car.id}
+            onClick={() => slideToItem(car.id)}
+            className=""
+          ></li>
         ))}
       </ul>
     </Flex>

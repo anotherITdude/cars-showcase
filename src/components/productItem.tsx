@@ -13,25 +13,18 @@ const ProductItem = ({
   return (
     <Flex>
       <Block className="productPanel">
-        <h4 className="bodyType">{bodyType}</h4>
+        <div className="bodyType">{bodyType}</div>
         <div className="subHeading">
-          <h4 className="modelname">{modelName}</h4>
-          <h4 className="modelType">{modelType}</h4>
+          <span className="modelname">{modelName}</span>
+          <span className="modelType">{modelType}</span>
         </div>
-        {/*               
-              "id": "xc90-recharge",
-      "modelName": "XC90 Recharge", 
-      "bodyType": "suv",
-      "modelType": "plug-in hybrid",
-      "imageUrl": "/images/xc90_recharge.jpg" */}
-
         <img className="productPanel_image" alt={modelName} src={imageUrl} />
-        <div className="">
+        <div className="callToAction">
           <a title="Learn" href={`/learn/${id}`}>
-            Learn
+            Learn <i className="icon icon-link-chevron">&nbsp;</i>
           </a>
           <a title="Shop" href={`/shop/${id}`}>
-            Shop
+            Shop <i className="icon icon-link-chevron">&nbsp;</i>
           </a>
         </div>
       </Block>
